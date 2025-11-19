@@ -1,53 +1,105 @@
-## Models
-### Multiple inputs
+# Campaign Automation
+
+## Tech Stack
+* Next.js App Router with Typescript
+* ShadCN for UI components
+* Vercel Blob Storage
+* Vercel Storage - Prisma PostGres
+* Vercel AI-SDK
+* Prisma ORM
+* Inngest
+* Ngrok (Required for Vercel Blob integration)
+* Vercel for Deployments
+
+## Pre-requisites
+Clone the repo and setup a project in Vercel that uses the Next.js template and the repo.
+- Configure Storage for Prisma PostGres
+- Configure Blob Storage
+
+## Getting Started - Development
+
+### Setup the project on Vercel and add the following environment variables
+BLOB_READ_WRITE_TOKEN=<FETCHED_WITH_VERCEL_CLI>
+DATABASE_URL
+OPENAI_API_KEY
+POSTGRES_URL
+PRISMA_DATABASE_URL
+REPLICATE_API_TOKEN
+VERCEL_OIDC_TOKEN
+VERCEL_BLOB_CALLBACK_URL=<THIS_IS_THE_NGROK_ADDRESS>
+
+First, install dependencies
+```bash
+npm install
+```
+
+Run the development server:
+```bash
+npm run dev
+```
+
+Additionally, do the following:
+Start Ngrok -
+```bash
+npm run ngrok
+```
+
+Start Inngest -
+```bash
+npm run inngest
+```
+
+Setup Prisma DB
+```bash
+npx prisma db push
+```
+
+Optionally, run Prisma Studio
+```bash
+npm run prisma
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+## How to test
+Testing requires uploading a manifest and/or product images
+Once files are added for uploading, click **Generate Campaign**
+You will see am item queued in the right-hand side panel, click on it.
+You will be navigated to a campaign view which will automatically update with the hero images, message & translations, product images and any other relevant information.
+
+## GenAI info
+### Models used via Replicate
+product assets - black-forest-labs/flux-schnell
+hero images - google/nano-banana - 
+campaign message - o3
+
+### Other Models on Replicate
+#### Multiple inputs
 openai/gpt-5.1
-google/nano-banana
 bytedance/seedream-4
 flux-kontext-apps/multi-image-kontext-pro
 flux-kontext-apps/multi-image-list
-
-### Image generation
+#### Image generation
 bytedance/seedream-4
-
-### Resize
+#### Resize
 luma/reframe-image
-
-### Background removal
+#### Background removal
 851-labs/background-remover:a029dff38972b5fda4ec5d75d7d1cd25aeff621d2cf4946a41055d7db66b80bc
-
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Docs](https://nextjs.org/docs)
+- [Inngest Docs](https://www.inngest.com/docs)
+- [Prisma Docs](https://www.prisma.io/docs)
+- [Prisma PostGres](https://www.prisma.io/postgres)
+- [AI-SDK Docs](https://ai-sdk.dev/docs)
+- [Vercel Blob Docs](https://vercel.com/docs/vercel-blob)
+- [Vercel Blob Docs](https://vercel.com/docs/vercel-blob)
+- [ShadCN Docs](https://ui.shadcn.com/docs/installation)
+- [React Dropzone](https://react-dropzone.js.org/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

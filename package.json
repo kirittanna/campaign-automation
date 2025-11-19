@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "ngrok": "ngrok http 3000",
-    "inngest": "npx inngest-cli@latest dev"
+    "inngest": "npx inngest-cli@latest dev",
+    "prisma": "npx prisma studio"
   },
   "dependencies": {
     "@ai-sdk/google": "^2.0.31",
