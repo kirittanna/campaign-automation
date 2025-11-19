@@ -1,0 +1,41 @@
+// schema.prisma
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model CampaignMessage {
+  id          String    @default(cuid()) @id
+  campaign    Campaign? @relation(fields: [campaignId], references: [id])
+  campaignId  String?
+  createdAt   DateTime  @default(now()) @map(name: "created_at")
+  message     String
+  locale      String
+}
+
+model Creative {
+  id          String    @default(cuid()) @id
+  name        String
+  aspectRatio String?
+  campaign    Campaign? @relation(fields: [campaignId], references: [id])
+  campaignId  String?
+  createdAt   DateTime  @default(now()) @map(name: "created_at")
+  metadata    String?
+  url         String
+}
+
+model Campaign {
+  id            String    @default(cuid()) @id
+  brief         String?
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  creatives     Creative[]
+  messages      CampaignMessage[]
+  name          String?
+  ready         Boolean @default(false)
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+}

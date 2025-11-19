@@ -1,0 +1,5 @@
+export default function (product: string, audience: string, region: string, campaignMessage: string, locales: string[]) {
+    return `
+    Act as a creative marketing strategist. Your goal is to generate campaign message ideas for ${product} targeting ${audience} in ${region}. The campaign is about ${campaignMessage}. Provide a campaign concept with a catchy theme and a core message that captures the essence of the campaign. The message should be concise, memorable, and resonate with the target audience. Focus on creating a compelling narrative that highlights the unique selling points of the product while aligning with the campaign's objectives. Avoid generic phrases and ensure the message is tailored to the specific ${audience} and ${region}. The messages should be suitable for use in social media, advertising, and promotional materials. Translate text to all the following locales ${locales.join(', ')}.
+    `
+}

@@ -40,6 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-src/core/*
-src/prompts/*
-test.json
+public/**/*

@@ -1,3 +1,20 @@
+## Models
+### Multiple inputs
+openai/gpt-5.1
+google/nano-banana
+bytedance/seedream-4
+flux-kontext-apps/multi-image-kontext-pro
+flux-kontext-apps/multi-image-list
+
+### Image generation
+bytedance/seedream-4
+
+### Resize
+luma/reframe-image
+
+### Background removal
+851-labs/background-remover:a029dff38972b5fda4ec5d75d7d1cd25aeff621d2cf4946a41055d7db66b80bc
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
