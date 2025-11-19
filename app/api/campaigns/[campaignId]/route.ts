@@ -1,7 +1,7 @@
 import type { NextRequest } from 'next/server'
 import prisma from '@/lib/prisma';
 
-export async function GET(_req: NextRequest, ctx: RouteContext<'/campaigns/[campaignId]'>) {
+export async function GET(_req: NextRequest, ctx: RouteContext<'/api/campaigns/[campaignId]'>) {
   const { campaignId } = await ctx.params
   const campaign = await prisma.campaign.findUnique({
     where: { id: campaignId },
