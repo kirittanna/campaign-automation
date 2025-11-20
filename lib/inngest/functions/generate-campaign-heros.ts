@@ -51,48 +51,57 @@ const generateCampaignHeros = inngest.createFunction(
     });
 
     // 3. Generate product assets if not provided
-    if(!allProductsHaveImages) {
+    if (!allProductsHaveImages) {
       console.log("Generating product images for campaign", campaignId);
       const productImages = await step.run("generate-product-images", async () => {
         const result = await generateProductImages({ campaignId, products: products.filter(p => !p.image), targetAudience, targetRegion });
-  
+
         const output: Creative[] = []
-  
+
         // Upload generated product images to blob storage and save to database
         for (const item of result) {
           const fileExtension = item.image.mediaType.split('/').pop();
-          const response = await upload(`${campaignId}/products/${item.product.id}.${fileExtension}`, new Blob([new Uint8Array(item.image.uint8Array)]), { campaignId, type: 'product' });
-          console.log(`Uploaded product image`, item.product.id, response.url);
-          saveImageToFS(campaignId as string, item.product.id as string, item.image);
+          const productId = productCreatives.find(c => c.name === item.product.name)?.id;
+          const response = await upload(`${campaignId}/products/${productId}.${fileExtension}`, new Blob([new Uint8Array(item.image.uint8Array)]), { campaignId, type: 'product' });
+          console.log(`Uploaded product image`, productId, response.url);
+          saveImageToFS(campaignId as string, productId as string, item.image);
           const data = await prisma.creative.update({
-            where: { id: item.product.id as string },
+            where: { id: productId as string },
             data: {
               url: response.url,
             }
           });
-  
+
           output.push(data as unknown as Creative);
         }
-        
-        // Add the images to the product objects in the brief
-        brief.products = brief.products.map(p => {
-          if(p.image) return p;
 
-          return {
-            ...p,
-            image: output.find(item => item.id === p.id)?.url
-          }
-        })
-  
         return output;
       });
     }
+
+    const latestCreatives = await step.run("get-latest-creatives", async () => {
+      return await prisma.creative.findMany({
+        where: { campaignId: campaignId }
+      });
+    });
 
     // 4. Generate campaign hero assets in different sizes
     // 4.1 Brand compliance, legal content checks etc.
     console.log("Generating hero images for campaign", campaignId);
     await step.run("generate-hero-images", async () => {
-      const result = await generateHeroImages({ campaignId, campaignName, campaignMessage, products, brandColors, targetAudience, targetRegion });
+      const latestProductCreatives = latestCreatives.filter(p => JSON.parse(p.metadata as string).type === 'product')
+      console.log('Generate hero images using these inputs', latestProductCreatives.map(p => p.url).join(', '))
+      const result = await generateHeroImages({
+        campaignId,
+        campaignName,
+        campaignMessage,
+        products: latestProductCreatives.map(c => ({
+          id: c.id as string,
+          name: c.name as string,
+          description: '',
+          image: c.url as string,
+        })), brandColors, targetAudience, targetRegion
+      });
 
       const output = []
 

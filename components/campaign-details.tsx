@@ -20,13 +20,22 @@ import {
 } from "@/components/ui/breadcrumb"
 import { Campaign } from '@/lib/schema';
 import { fetcher } from '@/lib/utils';
+import Link from 'next/link';
+import { IconHome } from '@tabler/icons-react';
 
 export default function CampaignDetails({ id }: { id: string }) {
     const { data: campaign, error, isLoading } = useSWR<Campaign>(`/api/campaigns/${id}`, fetcher, {
         refreshInterval: 10000,
     })
 
-    if (error) return <div>failed to load</div>
+    if (error || !campaign || !campaign?.id) {
+        return (
+            <div className="flex flex-col p-4 gap-4">
+            <h2 className="text-2xl font-bold">Not Found!</h2>
+            <Link className="flex gap-1" href="/"><IconHome /> Home</Link>
+            </div>
+        )
+    }
     if (isLoading) return <Spinner />
 
     return (
