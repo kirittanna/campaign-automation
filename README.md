@@ -93,9 +93,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## GenAI info
 ### Models used via Replicate
-- product assets - black-forest-labs/flux-schnell
-- hero images - google/nano-banana - 
-- campaign message - o3
+- Generate product assets - black-forest-labs/flux-schnell
+- Generate hero images with multiple input images - google/nano-banana
+- Generate campaign message in multiple locales - o3
 
 ### Other Models on Replicate
 #### Multiple inputs
