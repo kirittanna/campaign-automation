@@ -19,14 +19,14 @@ Clone the repo and setup a project in Vercel that uses the Next.js template and 
 ## Getting Started - Development
 
 ### Setup the project on Vercel and add the following environment variables
-BLOB_READ_WRITE_TOKEN=<FETCHED_WITH_VERCEL_CLI>
-DATABASE_URL
-OPENAI_API_KEY
-POSTGRES_URL
-PRISMA_DATABASE_URL
-REPLICATE_API_TOKEN
-VERCEL_OIDC_TOKEN
-VERCEL_BLOB_CALLBACK_URL=<THIS_IS_THE_NGROK_ADDRESS>
+* BLOB_READ_WRITE_TOKEN=<FETCHED_WITH_VERCEL_CLI>
+* DATABASE_URL
+* OPENAI_API_KEY
+* POSTGRES_URL
+* PRISMA_DATABASE_URL
+* REPLICATE_API_TOKEN
+* VERCEL_OIDC_TOKEN
+* VERCEL_BLOB_CALLBACK_URL=<THIS_IS_THE_NGROK_ADDRESS>
 
 First, install dependencies
 ```bash
@@ -62,29 +62,29 @@ npm run prisma
 Open [http://localhost:3000](http://localhost:3000) with your browser.
 
 ## How to test
-Testing requires uploading a manifest and/or product images
-Once files are added for uploading, click **Generate Campaign**
-You will see am item queued in the right-hand side panel, click on it.
-You will be navigated to a campaign view which will automatically update with the hero images, message & translations, product images and any other relevant information.
+- To create a new campaign, uploading a manifest and/or product images
+- Once files are added for uploading, click **Generate Campaign**
+- You will see am item queued with _your campaign name_ in the right-hand side panel, click on it.
+- You will be navigated to a campaign view which will automatically update with the hero images, message & translations, product images and any other relevant information based on what you've configured.
 
 ## GenAI info
 ### Models used via Replicate
-product assets - black-forest-labs/flux-schnell
-hero images - google/nano-banana - 
-campaign message - o3
+- product assets - black-forest-labs/flux-schnell
+- hero images - google/nano-banana - 
+- campaign message - o3
 
 ### Other Models on Replicate
 #### Multiple inputs
-openai/gpt-5.1
-bytedance/seedream-4
-flux-kontext-apps/multi-image-kontext-pro
-flux-kontext-apps/multi-image-list
+- openai/gpt-5.1
+- bytedance/seedream-4
+- flux-kontext-apps/multi-image-kontext-pro
+- flux-kontext-apps/multi-image-list
 #### Image generation
-bytedance/seedream-4
+- bytedance/seedream-4
 #### Resize
-luma/reframe-image
+- luma/reframe-image
 #### Background removal
-851-labs/background-remover:a029dff38972b5fda4ec5d75d7d1cd25aeff621d2cf4946a41055d7db66b80bc
+- 851-labs/background-remover:a029dff38972b5fda4ec5d75d7d1cd25aeff621d2cf4946a41055d7db66b80bc
 
 ## Learn More
 
@@ -99,6 +99,8 @@ To learn more about Next.js, take a look at the following resources:
 - [Vercel Blob Docs](https://vercel.com/docs/vercel-blob)
 - [ShadCN Docs](https://ui.shadcn.com/docs/installation)
 - [React Dropzone](https://react-dropzone.js.org/)
+
+### Additional notes
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
