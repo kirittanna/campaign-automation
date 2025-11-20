@@ -67,6 +67,30 @@ Open [http://localhost:3000](http://localhost:3000) with your browser.
 - You will see am item queued with _your campaign name_ in the right-hand side panel, click on it.
 - You will be navigated to a campaign view which will automatically update with the hero images, message & translations, product images and any other relevant information based on what you've configured.
 
+## Sample Manifest
+```json
+{
+  "campaignName": "Winter Warmth Collection 2025",
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Thermal Puffer Jacket",
+      "description": "Insulated puffer jacket with windproof shell and fleece-lined interior"
+    },
+    {
+      "id": "prod-002",
+      "name": "Wool Knit Beanie",
+      "description": "Soft ribbed wool beanie offering warmth and comfort for cold days"
+    }
+  ],
+  "targetRegion": "North America & Europe",
+  "targetAudience": "Men 20-35, winter commuters, outdoor lifestyle",
+  "campaignMessage": "Stay Warm. Stay Stylish.",
+  "brandColors": ["#1E3A8A", "#93C5FD", "#F8FAFC"],
+  "locales": ["en-US", "en-GB", "de-DE"]
+}
+```
+
 ## GenAI info
 ### Models used via Replicate
 - product assets - black-forest-labs/flux-schnell
